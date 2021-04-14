@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Disks</h1>
+    <p>These are the disks found on your computer </p>
+
+{% endblock %}
+{% block content2 %}
+<br>
+<table>
+<tr>
+    <th>Name</th>
+    <th>Size</th>
+    <th>MountPoint</th>
+</tr>
+{% for r in disks_info %}
+<tr>
+    <td> {{ r.name }} </td>
+    <td> {{ r.size }} </td>
+    <td> {{ r.mountpoint }} </td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
