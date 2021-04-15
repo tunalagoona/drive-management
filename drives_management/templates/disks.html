@@ -1,24 +1,87 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>Disks</h1>
-    <p>These are the disks found on your computer </p>
+    <p>The disks found on your computer</p>
 
 {% endblock %}
 {% block content2 %}
 <br>
 <table>
-<tr>
-    <th>Name</th>
-    <th>Size</th>
-    <th>MountPoint</th>
-</tr>
-{% for r in disks_info %}
-<tr>
-    <td> {{ r.name }} </td>
-    <td> {{ r.size }} </td>
-    <td> {{ r.mountpoint }} </td>
-</tr>
-{% endfor %}
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Size</th>
+            <th>MountPoint</th>
+            <th>Mount</th>
+            <th>Unmount</th>
+            <th>Format</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th colspan="5">sda</th>
+        </tr>
+        {% for part in sda_partitions %}
+        <tr>
+            <th> {{ part.name }} </th>
+            <td> {{ part.size }} </td>
+            <td> {{ part.mountpoint }} </td>
+            <td>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="disk"  value="{{ part.name }}" style="width:100%">
+                    <input type="submit" name="command" value="Mount" style="width:100%">
+                </form>
+            </td>
+            <td>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="disk"  value="{{ part.name }}" style="width:100%">
+                    <input type="submit" name="command" value="Unmount" style="width:100%">
+                </form>
+            </td>
+            <td>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="disk"  value="{{ part.name }}" style="width:100%">
+                    <input type="submit" name="command" value="Format" style="width:100%">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th colspan="5">sdb</th>
+        </tr>
+        {% for part in sdb_partitions %}
+        <tr>
+            <th id = "sdbName"> {{ part.name }} </th>
+            <td> {{ part.size }} </td>
+            <td> {{ part.mountpoint }} </td>
+            <td>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="disk"  value="{{ part.name }}" style="width:100%">
+                    <input type="submit" name="command" value="Mount" style="width:100%">
+                </form>
+            </td>
+            <td>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="disk"  value="{{ part.name }}" style="width:100%">
+                    <input type="submit" name="command" value="Unmount" style="width:100%">
+                </form>
+            </td>
+            <td>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="disk"  value="{{ part.name }}" style="width:100%">
+                    <input type="submit" name="command" value="Format" style="width:100%">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
 </table>
 
 {% endblock %}
