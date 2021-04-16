@@ -1,2 +1,2 @@
-# drives-management
-Web app for drives management
+# drive-management
+Web app for drive management
