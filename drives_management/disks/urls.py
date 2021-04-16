@@ -4,5 +4,5 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.View1.as_view(), name='disks'),
+    path('', views.PartitionsView.as_view(), name='disks'),
 ]
