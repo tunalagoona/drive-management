@@ -40,7 +40,7 @@ class DiskManager:
             Path(f"/mnt/{dir_name}").mkdir(parents=True, exist_ok=True)
             return self.run_command(f"mount /dev/{disk} /mnt/{dir_name}")
         else:
-            return CommandResults("", f"mount: /dev/{disk}: already mounted.", "")
+            return CommandResults("", f"mount: /dev/{disk}: already mounted", "")
 
     def unmount(self, disk):
         return self.run_command(f"umount /dev/{disk}")
